@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.PresencesController">
+    <!-- En-tête -->
+    <top>
+        <HBox alignment="center" spacing="15" style="-fx-background-color: #3949ab; -fx-padding: 15;">
+            <Label fx:id="message" textFill="white">
+                <font>
+                    <Font name="Arial" size="16.0" />
+                </font>
+            </Label>
+        </HBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <VBox alignment="center" spacing="20" style="-fx-padding: 15; -fx-background-color: #f5f5f5;">
+            <!-- Titre de la liste des présences -->
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #3949ab;" text="La Liste de présences des professeurs">
+                <font>
+                    <Font name="Arial" size="18.0" />
+                </font>
+            </Label>
+
+            <!-- Titre de la liste d'émergement -->
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #303f9f;" text="Emergement" />
+
+            <!-- TableView: Liste des cours supplémentaires -->
+            <TableView fx:id="tableEmergement" prefWidth="650.0" style="-fx-pref-width: 650; -fx-pref-height: 250; -fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 3); -fx-border-color: #e0e0e0; -fx-border-radius: 4;">
+                <columns>
+                    <TableColumn fx:id="colID_r" prefWidth="150.0" text="ID" />
+                    <TableColumn fx:id="colStatut" prefWidth="150.0" text="Statut" />
+                    <TableColumn fx:id="colDate_r" prefWidth="150.0" text="Date" />
+                    <TableColumn fx:id="colCours" prefWidth="150.0" text="Cours" />
+                    <TableColumn fx:id="colProfesseur" prefWidth="150.0" text="Professeur" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+</BorderPane>

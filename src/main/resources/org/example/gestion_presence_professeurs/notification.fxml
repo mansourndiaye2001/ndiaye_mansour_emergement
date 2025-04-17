@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.NotificationController">
+    <!-- En-tête -->
+    <top>
+        <HBox alignment="center" spacing="10" style="-fx-background-color: #3b3b3b; -fx-padding: 10;">
+            <Label fx:id="message" textFill="#4d44a4">
+                <font>
+                    <Font name="System Bold" size="15.0" />
+                </font></Label>
+        </HBox>
+    </top>
+
+    <!-- Contenu principal -->
+    <center>
+        <!-- VBox pour contenir les deux TableView l'une sous l'autre -->
+        <VBox alignment="center" spacing="20" style="-fx-padding: 10;">
+
+
+            <Label style="-fx-font-weight: bold;" text="Les Notifications ">
+                <font>
+                    <Font name="System Bold Italic" size="15.0" />
+                </font></Label>
+
+
+            <!-- Deuxième TableView: Liste des cours supplémentaires -->
+
+            <TableView fx:id="tableNotifacion" prefWidth="600.0" style="-fx-pref-width: 600; -fx-pref-height: 200;">
+                <columns>
+                    <TableColumn fx:id="colID" prefWidth="200.0" text="ID" />
+                    <TableColumn fx:id="colDate" prefWidth="300.0" text="Date" />
+                    <TableColumn fx:id="colProfesseur" prefWidth="400.0" text="Professeur" />
+
+
+
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <HBox alignment="center" spacing="10" style="-fx-background-color: #3b3b3b; -fx-padding: 10;">
+            <Button fx:id="btnQuitter"  style="-fx-background-color: #9E9E9E; -fx-text-fill: white;" text="Deconexion" />
+        </HBox>
+    </bottom>
+</BorderPane>

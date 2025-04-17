@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane fx:id="loginPane" style="-fx-background-color: linear-gradient(to bottom right, #3498db, #8e44ad);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="org.example.gestion_presence_professeurs.HelloController">
+    <children>
+        <!-- Login Card -->
+        <VBox layoutX="250" layoutY="100" prefHeight="400" prefWidth="400" style="-fx-background-color: white; -fx-background-radius: 20; -fx-border-radius: 20;" alignment="TOP_CENTER" spacing="20">
+            <effect>
+                <DropShadow color="#00000066" radius="15" spread="0.05" />
+            </effect>
+            <padding>
+                <Insets top="30" right="40" bottom="30" left="40" />
+            </padding>
+
+            <!-- Logo/Icon Placeholder -->
+            <StackPane prefHeight="80" prefWidth="80" style="-fx-background-color: #f8f9fa; -fx-background-radius: 40;">
+                <children>
+                    <ImageView fitHeight="50" fitWidth="50" preserveRatio="true">
+                        <image>
+                            <!-- Replace with your actual logo/icon -->
+                            <!-- <Image url="@/images/logo.png" /> -->
+                        </image>
+                    </ImageView>
+                </children>
+                <effect>
+                    <DropShadow color="#00000022" radius="5" spread="0.05" />
+                </effect>
+            </StackPane>
+
+            <!-- Title -->
+            <Label text="Connexion" textFill="#2c3e50">
+                <font>
+                    <Font name="System Bold" size="24" />
+                </font>
+                <VBox.margin>
+                    <Insets top="10" bottom="20" />
+                </VBox.margin>
+            </Label>
+
+            <!-- Email Field -->
+            <VBox spacing="10">
+                <Label text="Email" textFill="#7f8c8d">
+                    <font>
+                        <Font size="12" />
+                    </font>
+                </Label>
+                <TextField fx:id="emailField" prefHeight="40" promptText="Entrez votre email" style="-fx-background-color: #f5f7fa; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ecf0f1; -fx-border-width: 1; -fx-padding: 5 15 5 15;">
+                    <font>
+                        <Font size="14" />
+                    </font>
+                </TextField>
+            </VBox>
+
+            <!-- Password Field -->
+            <VBox spacing="10">
+                <Label text="Mot de passe" textFill="#7f8c8d">
+                    <font>
+                        <Font size="12" />
+                    </font>
+                </Label>
+                <PasswordField fx:id="passwordField" prefHeight="40" promptText="Entrez votre mot de passe" style="-fx-background-color: #f5f7fa; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #ecf0f1; -fx-border-width: 1; -fx-padding: 5 15 5 15;">
+                    <font>
+                        <Font size="14" />
+                    </font>
+                </PasswordField>
+            </VBox>
+
+            <!-- Remember Me Checkbox -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <CheckBox text="Se souvenir de moi" textFill="#7f8c8d">
+                    <font>
+                        <Font size="12" />
+                    </font>
+                </CheckBox>
+            </HBox>
+
+            <!-- Login Button and Progress -->
+            <StackPane>
+                <Button fx:id="loginButton" onAction="#VerifEmailAndPassword" prefHeight="45" prefWidth="320" style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-background-radius: 8;" text="SE CONNECTER">
+                    <font>
+                        <Font name="System Bold" size="14" />
+                    </font>
+                    <effect>
+                        <DropShadow color="#00000033" radius="5" offsetY="3" />
+                    </effect>
+                </Button>
+                <ProgressIndicator fx:id="progressIndicator" progress="-1" style="-fx-progress-color: #3498db;" visible="false" prefHeight="30" prefWidth="30" />
+            </StackPane>
+        </VBox>
+    </children>
+</AnchorPane>

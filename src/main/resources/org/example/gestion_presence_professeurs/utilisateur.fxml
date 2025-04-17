@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.UtilisateurControlleur" stylesheets="@styles.css">
+
+    <!-- En-tête avec dégradé et ombre -->
+    <top>
+        <VBox>
+            <HBox alignment="CENTER" style="-fx-background-color: linear-gradient(to right, #2C3E50, #4CA1AF); -fx-padding: 15 20; -fx-background-radius: 0 0 10 10;">
+                <Label text="Gestion des Utilisateurs" style="-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: white;">
+                    <effect>
+                        <DropShadow color="#00000060" radius="3" />
+                    </effect>
+                </Label>
+                <HBox HBox.hgrow="ALWAYS" />
+                <HBox spacing="12" alignment="CENTER_RIGHT">
+                    <Button fx:id="btnAjouter" onAction="#AddUtilisateur" styleClass="action-button" style="-fx-background-color: #2ECC71;">
+                        <graphic>
+                            <HBox spacing="5" alignment="CENTER">
+                                <Label text="+" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: white;" />
+                                <Label text="Ajouter" style="-fx-text-fill: white;" />
+                            </HBox>
+                        </graphic>
+                        <effect>
+                            <DropShadow color="#00000040" radius="5" />
+                        </effect>
+                    </Button>
+                    <Button fx:id="btnModifier" onAction="#editUser" styleClass="action-button" style="-fx-background-color: #3498DB;">
+                        <graphic>
+                            <HBox spacing="5" alignment="CENTER">
+                                <Label text="✎" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: white;" />
+                                <Label text="Modifier" style="-fx-text-fill: white;" />
+                            </HBox>
+                        </graphic>
+                        <effect>
+                            <DropShadow color="#00000040" radius="5" />
+                        </effect>
+                    </Button>
+                    <Button fx:id="btnSupprimer" onAction="#deletUser" styleClass="action-button" style="-fx-background-color: #E74C3C;">
+                        <graphic>
+                            <HBox spacing="5" alignment="CENTER">
+                                <Label text="✕" style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: white;" />
+                                <Label text="Supprimer" style="-fx-text-fill: white;" />
+                            </HBox>
+                        </graphic>
+                        <effect>
+                            <DropShadow color="#00000040" radius="5" />
+                        </effect>
+                    </Button>
+                </HBox>
+            </HBox>
+
+            <!-- Ligne de séparation avec dégradé -->
+            <StackPane style="-fx-background-color: linear-gradient(to right, #F9D423, #FF4E50); -fx-pref-height: 3;" />
+        </VBox>
+    </top>
+
+    <!-- Contenu principal avec deux panneaux -->
+    <center>
+        <SplitPane dividerPositions="0.4" style="-fx-background-color: #FAFAFA;">
+            <!-- Formulaire utilisateur -->
+            <VBox spacing="15" style="-fx-padding: 25; -fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #E0E0E0; -fx-border-width: 1;">
+                <padding>
+                    <Insets top="10" right="20" bottom="15" left="20" />
+                </padding>
+
+                <Label text="Informations Utilisateur" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-padding: 0 0 10 0;" />
+
+                <VBox spacing="18" styleClass="form-container">
+                    <HBox spacing="10" styleClass="input-hbox">
+                        <Label styleClass="input-label" text="Nom :" style="-fx-font-weight: bold; -fx-text-fill: #34495E;" />
+                        <TextField fx:id="txtNom" promptText="Entrez le nom" styleClass="text-field" />
+                    </HBox>
+
+                    <HBox spacing="10" styleClass="input-hbox">
+                        <Label styleClass="input-label" text="Prénom :" style="-fx-font-weight: bold; -fx-text-fill: #34495E;" />
+                        <TextField fx:id="txtPrenom" promptText="Entrez le prénom" styleClass="text-field" />
+                    </HBox>
+
+                    <HBox spacing="10" styleClass="input-hbox">
+                        <Label styleClass="input-label" text="Email :" style="-fx-font-weight: bold; -fx-text-fill: #34495E;" />
+                        <TextField fx:id="txtEmail" promptText="exemple@domaine.com" styleClass="text-field" />
+                    </HBox>
+
+                    <HBox spacing="10" styleClass="input-hbox">
+                        <Label styleClass="input-label" text="Mot de Passe :" style="-fx-font-weight: bold; -fx-text-fill: #34495E;" />
+                        <PasswordField fx:id="txtPassword" promptText="••••••••" styleClass="text-field" />
+                    </HBox>
+
+                    <HBox spacing="10" styleClass="input-hbox">
+                        <Label styleClass="input-label" text="Rôle :" style="-fx-font-weight: bold; -fx-text-fill: #34495E;" />
+                        <ComboBox fx:id="comboRole" promptText="Sélectionner un rôle" styleClass="combo-box" />
+                    </HBox>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <HBox alignment="CENTER" spacing="15">
+                    <Button fx:id="btnRafraichir" onAction="#Annuler" styleClass="secondary-button" text="Réinitialiser">
+                        <graphic>
+                            <Label text="↺" style="-fx-font-weight: bold;" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <!-- Liste des utilisateurs -->
+            <VBox style="-fx-padding: 20; -fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #E0E0E0; -fx-border-width: 1;">
+                <Label text="Liste des Utilisateurs" style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2C3E50; -fx-padding: 0 0 15 0;" />
+
+                <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 0 0 10 0;">
+                    <TextField promptText="Rechercher..." style="-fx-pref-width: 200; -fx-background-radius: 30; -fx-padding: 8 15;" />
+                    <Button text="Rechercher" style="-fx-background-radius: 30; -fx-background-color: #7F8C8D; -fx-text-fill: white;" />
+                </HBox>
+
+                <TableView fx:id="tableView" onMouseClicked="#taclikP" VBox.vgrow="ALWAYS" styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="id" prefWidth="60" text="ID" />
+                        <TableColumn fx:id="colNom" prefWidth="130" text="Nom" />
+                        <TableColumn fx:id="colPrenom" prefWidth="130" text="Prénom" />
+                        <TableColumn fx:id="colEmail" prefWidth="180" text="Email" />
+                        <TableColumn fx:id="colRole" prefWidth="120" text="Rôle" />
+                    </columns>
+                    <effect>
+                        <DropShadow color="#00000020" radius="3" />
+                    </effect>
+                </TableView>
+
+
+            </VBox>
+        </SplitPane>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: linear-gradient(to right, #2C3E50, #4CA1AF); -fx-padding: 8 20;">
+            <Label fx:id="statusLabel" text="Prêt" style="-fx-text-fill: white;" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label text="© 2025 - Système de Gestion" style="-fx-text-fill: #E0E0E0; -fx-font-size: 11;" />
+        </HBox>
+    </bottom>
+</BorderPane>

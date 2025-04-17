@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.RapportController">
+    <VBox spacing="10" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- Titre -->
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Rapport des Présences" />
+
+        <!-- Onglets pour les différents diagrammes -->
+        <TabPane fx:id="tabPane">
+
+            <!-- 🟦 Tableau des émargements -->
+            <Tab text="Tableau des Émargements">
+                <AnchorPane>
+                    <TableView fx:id="tableRapports" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                        <columns>
+                            <TableColumn fx:id="colId" prefWidth="50" text="ID" />
+                            <TableColumn fx:id="colDate" prefWidth="120" text="Date" />
+                            <TableColumn fx:id="colProfesseur" prefWidth="150" text="Professeur" />
+                            <TableColumn fx:id="colCours" prefWidth="150" text="Cours" />
+                            <TableColumn fx:id="colStatut" prefWidth="100" text="Statut" />
+                        </columns>
+                    </TableView>
+                </AnchorPane>
+            </Tab>
+
+            <!-- 🟩 BarChart -->
+            <Tab text="Diagramme en Barres">
+                <AnchorPane>
+                    <Label text="Graphique des émargements par professeur" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
+                    <Pane fx:id="barChartPane" AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" />
+                </AnchorPane>
+            </Tab>
+
+            <!-- 🟨 LineChart -->
+            <Tab text="Diagramme en Ligne">
+                <AnchorPane>
+                    <Label text="Évolution des émargements" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
+                    <LineChart fx:id="lineChart" AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+                        <xAxis>
+                            <NumberAxis fx:id="xAxis" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis fx:id="yAxis" />
+                        </yAxis>
+                    </LineChart>
+                </AnchorPane>
+            </Tab>
+
+            <!-- 🟪 PieChart simulant un Doughnut -->
+            <Tab text="Diagramme en Doughnut">
+                <AnchorPane>
+                    <Label text="Taux de présence par cours" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
+                    <Pane fx:id="doughnutChartPane" AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" />
+                </AnchorPane>
+            </Tab>
+
+        </TabPane>
+
+        <!-- Boutons d'exportation -->
+        <HBox spacing="10" alignment="CENTER_RIGHT" AnchorPane.rightAnchor="10">
+            <Button fx:id="btnExportPDF" onAction="#LoadEmergementPdf" style="-fx-background-color: #ff4d4d; -fx-text-fill: white;" text="Exporter en PDF" />
+            <Button fx:id="btnExportExcel" onAction="#LoadExportExcel" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Exporter en Excel" />
+        </HBox>
+    </VBox>
+</AnchorPane>
