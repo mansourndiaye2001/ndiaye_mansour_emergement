@@ -35,7 +35,7 @@
                     <TableColumn fx:id="colID_r" prefWidth="150.0" text="ID" />
                     <TableColumn fx:id="colStatut" prefWidth="150.0" text="Statut" />
                     <TableColumn fx:id="colDate_r" prefWidth="150.0" text="Date" />
-                    <TableColumn fx:id="colCours" prefWidth="150.0" text="Cours" />
+                    <TableColumn fx:id="colCours" prefWidth="450.0" text="Cours" />
                     <TableColumn fx:id="colProfesseur" prefWidth="150.0" text="Professeur" />
                 </columns>
             </TableView>

@@ -93,7 +93,7 @@ public class HelloController {
                load.load(event, "Accueil", "/org/example/gestion_presence_professeurs/accueil.fxml");
                break;
             case 2:
-               userparams = "Gestionnaire " + utulisateur.getNom() + " " + utulisateur.getPrenom();
+               userparams = utulisateur.getNom() ;
                load.load(event, "Accueil", "/org/example/gestion_presence_professeurs/accueil.fxml");
                break;
             case 3:

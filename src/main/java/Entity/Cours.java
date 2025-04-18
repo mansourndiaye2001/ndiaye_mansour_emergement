@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class Cours {
     @Override
     public String toString() {
-        return nom;
+        return  "Cours" + " " +nom+" "+"Heure Debut "+ heureDebut+" "+"Heure Fin "+ " "+heureFin;
     }
 
     @Id

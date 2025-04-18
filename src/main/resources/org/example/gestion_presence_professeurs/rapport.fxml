@@ -1,70 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.Color?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlleur.RapportController">
-    <VBox spacing="10" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controlleur.RapportController">
 
-        <!-- Titre -->
-        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Rapport des Présences" />
+    <!-- Main container with padding -->
+    <VBox spacing="25" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10"
+          style="-fx-background-color: #f0f0f0; -fx-padding: 20;">
 
-        <!-- Onglets pour les différents diagrammes -->
-        <TabPane fx:id="tabPane">
+        <!-- Top Graphics Section (BarChart, LineChart, Doughnut Chart) -->
+        <HBox spacing="20" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+            <!-- BarChart -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 6, 0, 0, 1);">
+                <Label text="Émargements par Professeur"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3949ab;" />
+                <Pane fx:id="barChartPane" VBox.vgrow="ALWAYS" />
+            </VBox>
 
-            <!-- 🟦 Tableau des émargements -->
-            <Tab text="Tableau des Émargements">
-                <AnchorPane>
-                    <TableView fx:id="tableRapports" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
-                        <columns>
-                            <TableColumn fx:id="colId" prefWidth="50" text="ID" />
-                            <TableColumn fx:id="colDate" prefWidth="120" text="Date" />
-                            <TableColumn fx:id="colProfesseur" prefWidth="150" text="Professeur" />
-                            <TableColumn fx:id="colCours" prefWidth="150" text="Cours" />
-                            <TableColumn fx:id="colStatut" prefWidth="100" text="Statut" />
-                        </columns>
-                    </TableView>
-                </AnchorPane>
-            </Tab>
+            <!-- LineChart -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 6, 0, 0, 1);">
+                <Label text="Évolution des Émargements"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3949ab;" />
+                <LineChart fx:id="lineChart" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <NumberAxis fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="yAxis" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
 
-            <!-- 🟩 BarChart -->
-            <Tab text="Diagramme en Barres">
-                <AnchorPane>
-                    <Label text="Graphique des émargements par professeur" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
-                    <Pane fx:id="barChartPane" AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" />
-                </AnchorPane>
-            </Tab>
-
-            <!-- 🟨 LineChart -->
-            <Tab text="Diagramme en Ligne">
-                <AnchorPane>
-                    <Label text="Évolution des émargements" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
-                    <LineChart fx:id="lineChart" AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
-                        <xAxis>
-                            <NumberAxis fx:id="xAxis" />
-                        </xAxis>
-                        <yAxis>
-                            <NumberAxis fx:id="yAxis" />
-                        </yAxis>
-                    </LineChart>
-                </AnchorPane>
-            </Tab>
-
-            <!-- 🟪 PieChart simulant un Doughnut -->
-            <Tab text="Diagramme en Doughnut">
-                <AnchorPane>
-                    <Label text="Taux de présence par cours" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" />
-                    <Pane fx:id="doughnutChartPane" AnchorPane.topAnchor="40" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" />
-                </AnchorPane>
-            </Tab>
-
-        </TabPane>
-
-        <!-- Boutons d'exportation -->
-        <HBox spacing="10" alignment="CENTER_RIGHT" AnchorPane.rightAnchor="10">
-            <Button fx:id="btnExportPDF" onAction="#LoadEmergementPdf" style="-fx-background-color: #ff4d4d; -fx-text-fill: white;" text="Exporter en PDF" />
-            <Button fx:id="btnExportExcel" onAction="#LoadExportExcel" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Exporter en Excel" />
+            <!-- Doughnut Chart -->
+            <VBox spacing="10" HBox.hgrow="ALWAYS"
+                  style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 6, 0, 0, 1);">
+                <Label text="Taux de Présence par Cours"
+                       style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #3949ab;" />
+                <Pane fx:id="doughnutChartPane" VBox.vgrow="ALWAYS" />
+            </VBox>
         </HBox>
+
+        <!-- Table + Buttons Section -->
+        <VBox spacing="20" prefHeight="300"
+              style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 6, 0, 0, 1);">
+
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label text="Liste des Émargements"
+                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #3949ab;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnExportPDF" onAction="#LoadEmergementPdf"
+                        style="-fx-background-color: #e53935; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10 20;"
+                        text="Exporter en PDF">
+                    <graphic>
+                        <!-- Ajouter une icône PDF ici -->
+                    </graphic>
+                </Button>
+                <Button fx:id="btnExportExcel" onAction="#LoadExportExcel"
+                        style="-fx-background-color: #43a047; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-padding: 10 20;"
+                        text="Exporter en Excel">
+                    <graphic>
+                        <!-- Ajouter une icône Excel ici -->
+                    </graphic>
+                </Button>
+            </HBox>
+
+            <!-- Table for displaying the records -->
+            <TableView fx:id="tableRapports" prefHeight="200" VBox.vgrow="NEVER" style="-fx-border-radius: 10;">
+                <columns>
+                    <TableColumn fx:id="colId" prefWidth="100" text="ID" />
+                    <TableColumn fx:id="colDate" prefWidth="400" text="Date" />
+                    <TableColumn fx:id="colProfesseur" prefWidth="300" text="Professeur" />
+                    <TableColumn fx:id="colCours" prefWidth="180" text="Cours" />
+                    <TableColumn fx:id="colStatut" prefWidth="120" text="Statut" />
+                </columns>
+                <placeholder>
+                    <Label text="Aucune donnée disponible." />
+                </placeholder>
+            </TableView>
+        </VBox>
     </VBox>
 </AnchorPane>

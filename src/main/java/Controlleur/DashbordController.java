@@ -34,16 +34,18 @@ public class DashbordController {
         // Affiche le message personnalisé (ex : nom d'utilisateur)
         message.setText(HelloController.userparams);
 
-        // Contrôle d'accès selon le rôle utilisateur
+
         if (HelloController.user.getRole().getId() == 1) {
             btnUtilisateurs.setDisable(false);
-            btnSalle.setDisable(true);
-            btnCours.setDisable(true);
-            btnNotifications.setDisable(true);
-            btnRapports.setDisable(true);
-            btnPresences.setDisable(true);
+            btnSalle.setVisible(false);
+            btnCours.setVisible(false);
+            btnNotifications.setVisible(false);
+            btnRapports.setVisible(false);
+            btnPresences.setVisible(false);
+            loadPage("/org/example/gestion_presence_professeurs/utilisateur.fxml");
         } else if (HelloController.user.getRole().getId() == 2) {
-            btnUtilisateurs.setDisable(true);
+            btnUtilisateurs.setVisible(false);
+            loadPage("/org/example/gestion_presence_professeurs/cours.fxml");
         }
 
         // Actions des boutons

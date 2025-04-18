@@ -115,6 +115,18 @@ public class CoursControlleur implements Initializable {
             {
                 Notification.NotifiError(" Erreur","Tous les champs sont obligatoire");
             }else{
+                int heureDebut = spinnerHeureDebut.getValue();
+                int minuteDebut = spinnerMinuteDebut.getValue();
+                int heureFin = spinnerHeureFin.getValue();
+                int minuteFin = spinnerMinuteFin.getValue();
+
+                LocalTime debut = LocalTime.of(heureDebut, minuteDebut);
+                LocalTime fin = LocalTime.of(heureFin, minuteFin);
+
+                if (!debut.isBefore(fin)) {
+                    Notification.NotifiError("Erreur d'horaire", "L'heure de début doit être inférieure à l'heure de fin.");
+                    return;
+                }
                 Cours cours = new Cours();
                 cours.setNom(txtNom.getText().toUpperCase().toUpperCase());
                 cours.setDescription(txtDescription.getText().toUpperCase().toUpperCase());
@@ -158,6 +170,53 @@ public class CoursControlleur implements Initializable {
         coursImplemts.delete(cours);
         loadCours();
         Notification.NotifiSuccess("Information","Suppression Avec Succes !!");
+
+    }
+    public  void UpdateCours(ActionEvent event){
+        if(
+                (!Validation.ValidateText(txtNom.getText()))
+                        && (!Validation.ValidateText(txtDescription.getText()))
+                        && (!Validation.ValidateText(txtNom.getText()))
+                        && (!Validation.ValidateText(String.valueOf(comboSalle.getValue())))
+                        && (!Validation.ValidateText(String.valueOf(comboProfesseur.getValue())))
+        )
+
+        {
+            Notification.NotifiError(" Erreur","Veuillez remplir tous les champs");
+        }else{
+            if(
+                    (!Validation.ValidateText(txtNom.getText()))
+                            || (!Validation.ValidateText(txtDescription.getText()))
+                            || (!Validation.ValidateText(txtNom.getText()))
+                            || (!Validation.ValidateText(String.valueOf(comboSalle.getValue())))
+                            || (!Validation.ValidateText(String.valueOf(comboProfesseur.getValue())))
+            )
+            {
+                Notification.NotifiError(" Erreur","Tous les champs sont obligatoire");
+            }else{
+                int heureDebut = spinnerHeureDebut.getValue();
+                int minuteDebut = spinnerMinuteDebut.getValue();
+                int heureFin = spinnerHeureFin.getValue();
+                int minuteFin = spinnerMinuteFin.getValue();
+
+                LocalTime debut = LocalTime.of(heureDebut, minuteDebut);
+                LocalTime fin = LocalTime.of(heureFin, minuteFin);
+
+                if (!debut.isBefore(fin)) {
+                    Notification.NotifiError("Erreur d'horaire", "L'heure de début doit être inférieure à l'heure de fin.");
+                    return;
+                }
+                Cours cours = tableCours.getSelectionModel().getSelectedItem();
+
+                coursImplemts.updateCours(cours, comboJour.getValue());
+
+                loadCours();
+            }
+
+        }
+
+
+
 
     }
 }
